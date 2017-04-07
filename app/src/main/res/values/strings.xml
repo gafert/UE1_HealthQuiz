@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">UE1_HealthQuiz</string>
     <string name="question_text">Do you feel healthy?</string>
+    
     <string name="true_button">True</string>
     <string name="false_button">False</string>
     <string name="next_button">Next</string>
+    <string name="cheat_button">Cheat!</string>
+    
+    <string name="warning_text">Do you consent to illegally cheat?</string>
+    <string name="show_answer_button">Show Answer</string>
+    <string name="judgmental_toast">You could have been a true hero!</string>
+
     <string name="correct_toast">Holy moly, that´s right!</string>
     <string name="incorrect_toast">Holy smokes, you having a hard time there, mate!</string>
 
