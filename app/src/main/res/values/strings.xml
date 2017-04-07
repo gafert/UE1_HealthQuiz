@@ -3,6 +3,19 @@
     <string name="question_text">Do you feel healthy?</string>
     <string name="true_button">True</string>
     <string name="false_button">False</string>
+    <string name="next_button">Next</string>
     <string name="correct_toast">Holy moly, that´s right!</string>
     <string name="incorrect_toast">Holy smokes, you haveing a hard time there, mate!</string>
+
+    <string name="question0">Kissing someone for one minute burns up to 2 calories.</string>
+    <string name="question1">In 2013, the longes kiss ever recorded lastet 58 hours, 35 minutes and 58 seconds in Thailand.</string>
+    <string name="question2">Cheek kissing is more sanitary than shaking someones hand.</string>
+    <string name="question3">People who french kiss have an higher IQ than those that only kiss on the lips.</string>
+    <string name="question4">Kissing over 30 minutes a day can boost up your immune system by 50%.</string>
+    <string name="question5">A 2012 survey found that the average age for someone´s first kiss, in the US, is 10 years.</string>
+    <string name="question6">When two people kiss they can exchange up to a whopping one billion particle of bacteria.</string>
+    <string name="question7">Szechuan sauce is good for Rick´s mental health.</string>
+    <string name="question8">People who are intimate every day have a thinner waste line.</string>
+    <string name="question9">The Health Insurance of the Gogogblog System supports Kalechian health IDs.</string>
+
 </resources>
