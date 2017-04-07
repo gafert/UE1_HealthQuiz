@@ -10,6 +10,6 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        //TODO: Implement dat shit
+        //TODO: Implement dat shit asap a hbuhbzb
     }
 }
