@@ -4,28 +4,29 @@ package fhtw.bsa2.gafert_steiner.ue1_healthquiz;
  * Created by michi on 07.04.17.
  */
 
+
 public class Question {
-    private int mTextResId;
-    private boolean mAnswerTrue;
+    private int question_ID;
+    private boolean answere;
 
-    public Question(int textResId, boolean answerTrue) {
-        mTextResId = textResId;
-        mAnswerTrue = answerTrue;
+    public Question(int id, boolean answere){
+        this.question_ID=id;
+        this.answere=answere;
     }
 
-    public int getTextResId () {
-        return mTextResId ;
+    public int getQuestion_ID() {
+        return question_ID;
     }
 
-    public void setTextResId (int textResId) {
-        this.mTextResId = textResId;
+    public void setQuestion_ID(int question_ID) {
+        this.question_ID = question_ID;
     }
 
-    public boolean isAnswerTrue () {
-        return mAnswerTrue;
+    public boolean isAnswere() {
+        return answere;
     }
 
-    public void setAnswerTrue (boolean answerTrue) {
-        this.mAnswerTrue = answerTrue;
+    public void setAnswere(boolean answere) {
+        this.answere = answere;
     }
 }

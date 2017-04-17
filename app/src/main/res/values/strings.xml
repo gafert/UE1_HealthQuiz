@@ -1,18 +1,19 @@
 <resources>
-    <string name="app_name">UE1_HealthQuiz</string>
-    <string name="question_text">Do you feel healthy?</string>
-    
+    <string name="app_name">HealthQuiz</string>
+    <string name="question_text">Do you feel Healthy?</string>
     <string name="true_button">True</string>
     <string name="false_button">False</string>
     <string name="next_button">Next</string>
-    <string name="cheat_button">Cheat!</string>
-    
-    <string name="warning_text">Do you consent to illegally cheat?</string>
+    <string name="cheat_button">CHEAT!</string>
     <string name="show_answer_button">Show Answer</string>
-    <string name="judgmental_toast">You could have been a true hero!</string>
+    <string name="back_button">Go Back</string>
+    <string name="correct_toast">Correct!</string>
+    <string name="incorrect_toast">Incorrect!</string>
 
-    <string name="correct_toast">Holy moly, that´s right!</string>
-    <string name="incorrect_toast">Holy smokes, you having a hard time there, mate!</string>
+    <string name="warning_text">Are you sure you want to do this?</string>
+
+    <string name="judgement_toast">Cheating is wrong!</string>
+    <string name="title_activity_cheat">Cheat</string>
 
     <string name="question0">Kissing someone for one minute burns up to 2 calories.</string>
     <string name="question1">In 2013, the longes kiss ever recorded lastet 58 hours, 35 minutes and 58 seconds in Thailand.</string>

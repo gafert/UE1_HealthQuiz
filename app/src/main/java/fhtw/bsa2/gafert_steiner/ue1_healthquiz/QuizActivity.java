@@ -1,5 +1,6 @@
 package fhtw.bsa2.gafert_steiner.ue1_healthquiz;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,119 +9,161 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class QuizActivity extends AppCompatActivity {
 
-    private static final String TAG ="QuizActivity";
-    private static final String KEY_INDEX = "index" ;
+    private static final String TAG = "QuizActivity";
+    private static final String KEY_INDEX ="index";
 
-    private Button mTrueButton;
-    private Button mFalseButton;
-    private Button mNextButton;
-    private TextView mQuestionView;
-    private int mCurrentIndex = 0;
+    private Button trueButton;
+    private Button falseButton;
+    private Button nextButton;
+    private Button cheatButton;
+    private TextView questionText;
+    private TextView cheaterTextView;
 
-    private Question[] mQuestionBank = new Question[]{
+
+    private Question[] questionBank = new Question[]{
             new Question(R.string.question0, true),
             new Question(R.string.question1, true),
             new Question(R.string.question2, true),
-            new Question(R.string.question3, false),
-            new Question(R.string.question4, false),
-            new Question(R.string.question5, false),
+            new Question(R.string.question3, true),
+            new Question(R.string.question4, true),
+            new Question(R.string.question5, true),
             new Question(R.string.question6, true),
             new Question(R.string.question7, true),
-            new Question(R.string.question8, false),
-            new Question(R.string.question9, false),
+            new Question(R.string.question8, true),
+            new Question(R.string.question9, true)
+
     };
 
-    private void updateQuestion () {
-        mQuestionView.setText(mQuestionBank[mCurrentIndex].getTextResId());
-        Log.i(TAG,"Updated Question");
-    }
-    private void checkAnswer(boolean userPressedTrue) {
-        boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
-        int messageId = 0;
-        if (userPressedTrue == answerIsTrue) {
-            messageId = R.string.correct_toast;
-        } else{
-            messageId = R.string.incorrect_toast;
-        }
-        Toast.makeText(QuizActivity.this, messageId, Toast.LENGTH_SHORT).show();
-    }
-        
+    private int questionIndex=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        Log.d(TAG, "onCreate() called");
 
-        mTrueButton = (Button) findViewById(R.id.true_button);
-        mFalseButton = (Button) findViewById(R.id.false_button);
-        mNextButton = (Button) findViewById(R.id.next_button);
-        mQuestionView = (TextView) findViewById(R.id.question_view);
+        trueButton = (Button)findViewById(R.id.true_button);
+        falseButton = (Button) findViewById(R.id.false_button);
+        nextButton = (Button)findViewById(R.id.next_button);
+        cheatButton = (Button) findViewById(R.id.cheat_button);
+        questionText = (TextView) findViewById(R.id.question_text);
+        cheaterTextView = (TextView) findViewById(R.id.cheater_textView);
 
         if(savedInstanceState != null){
-            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+            questionIndex = savedInstanceState.getInt(KEY_INDEX, 0);
         }
 
         updateQuestion();
 
-        mTrueButton.setOnClickListener(new View.OnClickListener() {
+
+        trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkAnswer(true);
             }
         });
 
-        mFalseButton.setOnClickListener(new View.OnClickListener() {
+        falseButton.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View v) {
                 checkAnswer(false);
-             }
+            }
         });
 
-        mNextButton.setOnClickListener(new View.OnClickListener() {
+        nextButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+            public void onClick(View v){
+                questionIndex = (questionIndex +1) % questionBank.length;
                 updateQuestion();
             }
         });
+
+        cheatButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i = new Intent(QuizActivity.this,CheatActivity.class);
+
+                boolean answerIsTrue = questionBank[questionIndex].isAnswere();
+                i.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerIsTrue);
+
+                startActivityForResult(i,0);
+            }
+        });
+
+
+    }
+
+    private void updateQuestion(){
+        questionText.setText(questionBank[questionIndex].getQuestion_ID());
+        cheaterTextView.setText("");
+    }
+
+    private void checkAnswer(boolean userInput){
+        boolean answerBoolean = questionBank[questionIndex].isAnswere();
+        int messageID=0;
+
+        if(userInput==answerBoolean){
+            messageID = R.string.correct_toast;
+        }else{
+            messageID = R.string.incorrect_toast;
+        }
+
+        Toast.makeText(QuizActivity.this, messageID,Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
-        Log.d(TAG, "onSaveInstanceState() called");
-        savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+        Log.i(TAG, "onSaveInstanceState");
+        savedInstanceState.putInt(KEY_INDEX, questionIndex);
     }
 
     @Override
-    protected void onStart() {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(resultCode != RESULT_OK){return;}
+        if(data.getExtras()!=null){
+            boolean cheated = data.getBooleanExtra(CheatActivity.CHEATED, false);
+            if(cheated == true){
+                cheaterTextView.setText("CHEATER!!!");
+            }
+        }
+    }
+
+
+
+    //Logging
+    @Override
+    public void onStart(){
         super.onStart();
-        Log.d(TAG, "onStart() called");
+        Log.d(TAG, "onStart() called!");
     }
 
     @Override
-    protected void onStop() {
+    public void onStop(){
         super.onStop();
         Log.d(TAG, "onStop() called");
     }
 
     @Override
-    public void onPause () {
+    public void onPause(){
         super.onPause();
         Log.d(TAG, "onPause() called");
     }
 
     @Override
-    public void onResume() {
+    public void onResume(){
         super.onResume();
-        Log.d(TAG, "onResume() called");
+        Log.d(TAG, "onResume called!");
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroy(){
         super.onDestroy();
-        Log.d(TAG, "onDestroy() called " );
+        Log.d(TAG, "onDestroy called!");
     }
 }
+
