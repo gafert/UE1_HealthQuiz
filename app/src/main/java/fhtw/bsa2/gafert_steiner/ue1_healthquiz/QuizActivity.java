@@ -1,20 +1,18 @@
 package fhtw.bsa2.gafert_steiner.ue1_healthquiz;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 public class QuizActivity extends AppCompatActivity {
 
     private static final String TAG = "QuizActivity";
-    private static final String KEY_INDEX ="index";
+    private static final String KEY_INDEX = "index";
 
     private Button trueButton;
     private Button falseButton;
@@ -22,7 +20,6 @@ public class QuizActivity extends AppCompatActivity {
     private Button cheatButton;
     private TextView questionText;
     private TextView cheaterTextView;
-
 
     private Question[] questionBank = new Question[]{
             new Question(R.string.question0, true),
@@ -38,16 +35,16 @@ public class QuizActivity extends AppCompatActivity {
 
     };
 
-    private int questionIndex=0;
+    private int questionIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        trueButton = (Button)findViewById(R.id.true_button);
+        trueButton = (Button) findViewById(R.id.true_button);
         falseButton = (Button) findViewById(R.id.false_button);
-        nextButton = (Button)findViewById(R.id.next_button);
+        nextButton = (Button) findViewById(R.id.next_button);
         cheatButton = (Button) findViewById(R.id.cheat_button);
         questionText = (TextView) findViewById(R.id.question_text);
         cheaterTextView = (TextView) findViewById(R.id.cheater_textView);
@@ -57,7 +54,6 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         updateQuestion();
-
 
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,28 +83,26 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent i = new Intent(QuizActivity.this,CheatActivity.class);
 
-                boolean answerIsTrue = questionBank[questionIndex].isAnswere();
+                boolean answerIsTrue = questionBank[questionIndex].isAnswer();
                 i.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerIsTrue);
 
-                startActivityForResult(i,0);
+                startActivityForResult(i, 0);
             }
         });
-
-
     }
 
-    private void updateQuestion(){
+    private void updateQuestion() {
         questionText.setText(questionBank[questionIndex].getQuestion_ID());
         cheaterTextView.setText("");
     }
 
-    private void checkAnswer(boolean userInput){
-        boolean answerBoolean = questionBank[questionIndex].isAnswere();
-        int messageID=0;
+    private void checkAnswer(boolean userInput) {
+        boolean answerBoolean = questionBank[questionIndex].isAnswer();
+        int messageID = 0;
 
-        if(userInput==answerBoolean){
+        if (userInput == answerBoolean) {
             messageID = R.string.correct_toast;
-        }else{
+        } else {
             messageID = R.string.incorrect_toast;
         }
 
@@ -123,45 +117,45 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(resultCode != RESULT_OK){return;}
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) {
+            return;
+        }
         if(data.getExtras()!=null){
             boolean cheated = data.getBooleanExtra(CheatActivity.CHEATED, false);
-            if(cheated == true){
+            if (cheated) {
                 cheaterTextView.setText("CHEATER!!!");
             }
         }
     }
 
-
-
     //Logging
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         Log.d(TAG, "onStart() called!");
     }
 
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop() called");
+        Log.d(TAG, "onStop() called!");
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
-        Log.d(TAG, "onPause() called");
+        Log.d(TAG, "onPause() called!");
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume called!");
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy called!");
     }

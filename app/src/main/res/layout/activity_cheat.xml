@@ -1,49 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fhtw.bsa2.steiner.healthquiz.CheatActivity">
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+    <TextView
+        android:id="@+id/show_answer_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:text="TRUE/FALSE"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="50dp" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:padding="24pt"
-            android:text="@string/warning_text" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dp"
+        android:text="@string/warning_text" />
 
-        <Button
-            android:id="@+id/show_answer_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/show_answer_button" />
+    <Button
+        android:id="@+id/show_answer_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_answer_button" />
 
-        <TextView
-            android:id="@+id/show_answer_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:padding="24pt"
-            android:text=""
-            android:textColor="@android:color/holo_orange_dark"
-            android:textSize="50px" />
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_button"
+        android:visibility="invisible" />
 
-        <Button
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/back_button"
-            android:visibility="invisible" />
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
