@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HealthQuiz</string>
+    <string name="app_name">UE1_HealthQuiz</string>
     <string name="question_text">Do you feel Healthy?</string>
     <string name="true_button">True</string>
     <string name="false_button">False</string>
@@ -9,6 +9,9 @@
     <string name="back_button">Go Back</string>
     <string name="correct_toast">Correct!</string>
     <string name="incorrect_toast">Incorrect!</string>
+
+    <!-- Two backslashes to me correct -->
+    <string name="default_cheatAnswer">\\_(°-°)_/</string>
 
     <string name="warning_text">Are you sure you want to do this?</string>
 

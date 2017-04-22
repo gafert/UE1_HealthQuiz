@@ -21,9 +21,12 @@
         android:id="@+id/cheater_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
         android:gravity="center_horizontal"
-        android:paddingBottom="24dp"
-        android:text="" />
+        android:textAllCaps="false"
+        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold|italic" />
 
     <LinearLayout
         android:layout_width="wrap_content"

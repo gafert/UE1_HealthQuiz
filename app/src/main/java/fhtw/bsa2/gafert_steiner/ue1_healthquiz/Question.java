@@ -17,7 +17,7 @@ public class Question {
         this.question_ID = question_ID;
     }
 
-    public boolean isAnswer() {
+    public boolean getAnswer() {
         return answer;
     }
 

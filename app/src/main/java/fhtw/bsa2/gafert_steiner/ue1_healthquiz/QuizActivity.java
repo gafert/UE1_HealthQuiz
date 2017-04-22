@@ -21,6 +21,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView questionText;
     private TextView cheaterTextView;
 
+    // Load questions into questionBank array
     private Question[] questionBank = new Question[]{
             new Question(R.string.question0, true),
             new Question(R.string.question1, true),
@@ -32,7 +33,6 @@ public class QuizActivity extends AppCompatActivity {
             new Question(R.string.question7, true),
             new Question(R.string.question8, true),
             new Question(R.string.question9, true)
-
     };
 
     private int questionIndex = 0;
@@ -42,6 +42,7 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        // Assign layout buttons variables
         trueButton = (Button) findViewById(R.id.true_button);
         falseButton = (Button) findViewById(R.id.false_button);
         nextButton = (Button) findViewById(R.id.next_button);
@@ -70,34 +71,42 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
+        // When nextButton is clicked show the next question
         nextButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                questionIndex = (questionIndex +1) % questionBank.length;
+                questionIndex = (questionIndex + 1) % questionBank.length;
                 updateQuestion();
             }
         });
 
+        // Makes new Intent
+        // Puts the correct answer of the question in the new intent
+        // And starts Activity
         cheatButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent i = new Intent(QuizActivity.this,CheatActivity.class);
+                Intent i = new Intent(QuizActivity.this, CheatActivity.class);
 
-                boolean answerIsTrue = questionBank[questionIndex].isAnswer();
-                i.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerIsTrue);
+                boolean answer = questionBank[questionIndex].getAnswer();
+                i.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answer);
 
                 startActivityForResult(i, 0);
             }
         });
     }
 
+    // Gets the question to the corresponding question index and shows it in the layout
     private void updateQuestion() {
         questionText.setText(questionBank[questionIndex].getQuestion_ID());
         cheaterTextView.setText("");
     }
 
+    // Checks if the userInput (true/false) equals the answer of the question
+    // -> True: Show correct message
+    // -> False: Show incorrect message
     private void checkAnswer(boolean userInput) {
-        boolean answerBoolean = questionBank[questionIndex].isAnswer();
+        boolean answerBoolean = questionBank[questionIndex].getAnswer();
         int messageID = 0;
 
         if (userInput == answerBoolean) {
@@ -109,6 +118,7 @@ public class QuizActivity extends AppCompatActivity {
         Toast.makeText(QuizActivity.this, messageID,Toast.LENGTH_SHORT).show();
     }
 
+    // Function is called before the activity closes and saves the current questionIndex to the instance
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
@@ -116,12 +126,15 @@ public class QuizActivity extends AppCompatActivity {
         savedInstanceState.putInt(KEY_INDEX, questionIndex);
     }
 
+    // Called when received results from CheatActivity
+    // Get the variable if the user cheated in the CheatActivity from the data Intent
+    // -> If cheated: Set cheat text
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK) {
             return;
         }
-        if(data.getExtras()!=null){
+        if (data.getExtras() != null) {
             boolean cheated = data.getBooleanExtra(CheatActivity.CHEATED, false);
             if (cheated) {
                 cheaterTextView.setText("CHEATER!!!");
@@ -129,7 +142,7 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    //Logging
+    // Logging
     @Override
     public void onStart() {
         super.onStart();

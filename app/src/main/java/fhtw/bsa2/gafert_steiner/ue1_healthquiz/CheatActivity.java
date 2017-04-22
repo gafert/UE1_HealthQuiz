@@ -9,10 +9,11 @@ import android.widget.TextView;
 
 public class CheatActivity extends AppCompatActivity {
 
-    public static final String EXTRA_ANSWER_IS_TRUE = "fhtw.bsa2.steiner.healthquiz.answer_is_true";
-    public static final String CHEATED = "fhtw.bsa2.steiner.healthquiz.cheated";
+    // Strings to identify extra variables stored in the Intent
+    public static final String EXTRA_ANSWER_IS_TRUE = "fhtw.bsa2.gafert_steiner.ue1_healthquiz.answer_is_true";
+    public static final String CHEATED = "fhtw.bsa2.gafert_steiner.ue1_healthquiz.cheated";
 
-    private boolean answerIsTrue;
+    private boolean answer;
     private TextView answerTextView;
     private Button showAnswerButton;
     private Button backButton;
@@ -23,16 +24,20 @@ public class CheatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
 
-        answerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
+        // Gets the answer which was passed to the Intent by Quiz Activity
+        answer = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
 
+        // Get layout elements
         answerTextView = (TextView) findViewById(R.id.show_answer_textView);
         showAnswerButton = (Button) findViewById(R.id.show_answer_button);
         backButton = (Button) findViewById(R.id.back_button);
 
+        // When the button is clicked show the answer
+        // Set the cheated var to true
         showAnswerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (answerIsTrue) {
+                if (answer) {
                     answerTextView.setText(R.string.true_button);
                 } else {
                     answerTextView.setText(R.string.false_button);
@@ -43,6 +48,11 @@ public class CheatActivity extends AppCompatActivity {
             }
         });
 
+        // When back button is clicked
+        // Make new Intent
+        // Put the variable if the user cheated
+        // Set the intent to the results
+        // And finish the activity
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,13 +63,4 @@ public class CheatActivity extends AppCompatActivity {
             }
         });
     }
-
-    /*
-    public static Intent newIntent(Context packageContext, boolean answerIsTrue){
-        Intent i = new Intent(packageContext, CheatActivity.class);
-        i.putExtra(EXTRA_ANSWER_IS_TRUE,answerIsTrue);
-        return i;
-
-    }
-    */
 }

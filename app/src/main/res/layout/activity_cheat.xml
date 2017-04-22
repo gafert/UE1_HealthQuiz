@@ -10,9 +10,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
-        android:text="TRUE/FALSE"
+        android:text="@string/default_cheatAnswer"
+        android:textAlignment="viewStart"
         android:textColor="@android:color/holo_orange_dark"
-        android:textSize="50dp" />
+        android:textSize="50sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView"
