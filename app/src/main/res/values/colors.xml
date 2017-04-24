@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="correctAnswer">#834e9929</color>
+    <color name="incorrectAnswer">#7fac2525</color>
+    <color name="falseButton">#990a1b</color>
+    <color name="trueButton">#3d6830</color>
+    <color name="nextButton">#4171cf</color>
+    <color name="cheatButton">#c2ae47</color>
 </resources>

@@ -25,14 +25,14 @@ public class QuizActivity extends AppCompatActivity {
     private Question[] questionBank = new Question[]{
             new Question(R.string.question0, true),
             new Question(R.string.question1, true),
-            new Question(R.string.question2, true),
-            new Question(R.string.question3, true),
+            new Question(R.string.question2, false),
+            new Question(R.string.question3, false),
             new Question(R.string.question4, true),
-            new Question(R.string.question5, true),
+            new Question(R.string.question5, false),
             new Question(R.string.question6, true),
             new Question(R.string.question7, true),
             new Question(R.string.question8, true),
-            new Question(R.string.question9, true)
+            new Question(R.string.question9, false)
     };
 
     private int questionIndex = 0;
@@ -137,7 +137,7 @@ public class QuizActivity extends AppCompatActivity {
         if (data.getExtras() != null) {
             boolean cheated = data.getBooleanExtra(CheatActivity.CHEATED, false);
             if (cheated) {
-                cheaterTextView.setText("CHEATER!!!");
+                cheaterTextView.setText(R.string.judgement_toast);
             }
         }
     }
